@@ -8,13 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using BunifuAnimatorNS;
+
 namespace CodeDao
 {
-    public partial class Form1 : Form
+    public partial class formauth : Form
     {
-        public Form1()
+        public formauth()
         {
             InitializeComponent();
+       
+
+        }
+
+        private void bunifuTextbox1_OnTextChange(object sender, EventArgs e)
+        {
+
         }
     }
 }
