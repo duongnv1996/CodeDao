@@ -40,6 +40,7 @@ namespace CodeDao.DAL
                   
                     try
                     {
+                            
                         Task<FirebaseAuthLink> authTask = _provider.SignInWithEmailAndPasswordAsync(user.Email, user.Password);
                         FirebaseAuthLink authLink = await authTask;
                         if (authLink.FirebaseToken != null)

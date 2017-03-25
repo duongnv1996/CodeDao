@@ -12,7 +12,6 @@ namespace CodeDao.DAL.Interfaces
     {
         Task<ResponseData<User>> SignIn(FirebaseAuthType type,string accessToken,User user = null);
         Task<ResponseData<bool>> SignUp(FirebaseAuthType type,string accessToken,User user = null);
-
         Task<ResponseData<bool>> SendEmailToResetPasswordTask(string email);
     }
 }

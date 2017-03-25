@@ -22,6 +22,7 @@ namespace CodeDao
     public partial class formauth : Form
     {
         private AuthenticationBUS _authentication;
+
         public formauth()
         {
             InitializeComponent();
@@ -34,25 +35,25 @@ namespace CodeDao
 
         }
 
-        private async void btnSignIn_ClickAsync(object sender, EventArgs e)
+        private async void btnSignIn_Click(object sender, EventArgs e)
         {
 
             String email = txtEmail.Text;
             String password = txtPassword.Text;
             var userLogin = new User()
             {
-                Email =  email,
-                Password =  password
+                Email = email,
+                Password = password
             };
             loadingView.Visible = true;
-          
-            Task<ResponseData<User>> newUser = _authentication.SignIn(FirebaseAuthType.EmailAndPassword, userLogin, null);
+
+            Task<ResponseData<User>> newUser =  _authentication.SignIn(FirebaseAuthType.EmailAndPassword, userLogin, null);
             ResponseData<User> responseData = await newUser;
             loadingView.Visible = false;
             if (responseData.statusCode == Constants.CODE_SUCCESS)
             {
-                MessageBox.Show("Hi "+ responseData.data.DisplayName);
-               
+                MessageBox.Show("Hi " + responseData.data.DisplayName);
+
 
             }
             else

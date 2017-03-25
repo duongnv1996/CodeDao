@@ -22,21 +22,43 @@ namespace CodeDao.BUS
             _auth = new AuthenProvider();
         }
 
-        public  Task<ResponseData<User>> SignIn(FirebaseAuthType type, User user = null, string accessToken = null)
+        public async  Task<ResponseData<User>> SignIn(FirebaseAuthType type, User user = null, string accessToken = null)
         {
-//            if (user != null && !user.Email.Equals("") && user.Password.Equals(""))
-                return _auth.SignIn(type, accessToken, user);
-//            var response = new ResponseData<User>
-//            {
-//                statusCode = MOV.Models.Constants.CODE_NOT_FOUND,
-//                Msg = "Missing Data"
-//            };
-//            return new Task<ResponseData<User>>(() =>
-//            {
-//         
-//                return response;
-//            });
+            if (user != null && !user.Email.Equals("") && !user.Password.Equals(""))
+            {
+                // _auth.SignIn(type, accessToken, user);
+                //   var auth = .Result;
+                return await _auth.SignIn(type, accessToken, user);
+            }
+                
+           else
+           {
+                var response = new ResponseData<User>
+                {
+                    statusCode = MOV.Models.Constants.CODE_NOT_FOUND,
+                    Msg = "Missing Data",
+                    data = null
+
+                };
+
+                //return response;
+                var tsk = newMethod();
+              //  tsk.Start();
+               return await tsk;
+           }
+           
         }
 
+        private async Task<ResponseData<User>> newMethod()
+        {
+            var response = new ResponseData<User>
+            {
+                statusCode = MOV.Models.Constants.CODE_NOT_FOUND,
+                Msg = "Missing Data",
+                data = null
+
+            };
+            return response;
+        }
     }
 }

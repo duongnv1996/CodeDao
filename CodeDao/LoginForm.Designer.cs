@@ -491,7 +491,7 @@
             this.btnSignIn.Size = new System.Drawing.Size(360, 64);
             this.btnSignIn.TabIndex = 3;
             this.btnSignIn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_ClickAsync);
+            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
             // bunifuThinButton22
             // 
