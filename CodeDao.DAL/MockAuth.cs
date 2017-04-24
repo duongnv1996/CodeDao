@@ -22,21 +22,35 @@ namespace CodeDao.DAL
 
     public async   Task<ResponseData<User>> SignIn(FirebaseAuthType type, string accessToken, User user)
         {
-            var response = new ResponseData<User>();
-            response.data = user;
-            response.statusCode = 200;
-            response.Msg = "success";
+            var response = new ResponseData<User>
+            {
+                data = user,
+                statusCode = 200,
+                Msg = "success"
+            };
             return  response;
         }
 
-        Task<ResponseData<bool>> IAuthentication.SignUp(FirebaseAuthType type, string accessToken, User user)
+         Task<ResponseData<bool>> IAuthentication.SignUp(FirebaseAuthType type, string accessToken, User user)
         {
-            throw new NotImplementedException();
+            var response = new ResponseData<bool>
+            {
+                data = true,
+                statusCode = 200,
+                Msg = "success"
+            };
+            return new Task<ResponseData<bool>>(() => response);
         }
 
         Task<ResponseData<bool>> IAuthentication.SendEmailToResetPasswordTask(string email)
         {
-            throw new NotImplementedException();
+        var response = new ResponseData<bool>
+            {
+                data = true,
+                statusCode = 200,
+                Msg = "success"
+            };
+            return new Task<ResponseData<bool>>(() => response);
         }
     }
 }

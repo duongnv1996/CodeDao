@@ -66,5 +66,10 @@ namespace CodeDao
         {
             this.Hide();
         }
+
+        private void formauth_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

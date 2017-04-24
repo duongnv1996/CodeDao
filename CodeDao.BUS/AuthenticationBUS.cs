@@ -26,11 +26,8 @@ namespace CodeDao.BUS
         {
             if (user != null && !user.Email.Equals("") && !user.Password.Equals(""))
             {
-                // _auth.SignIn(type, accessToken, user);
-                //   var auth = .Result;
                 return await _auth.SignIn(type, accessToken, user);
             }
-                
            else
            {
                 var response = new ResponseData<User>
@@ -40,10 +37,7 @@ namespace CodeDao.BUS
                     data = null
 
                 };
-
-                //return response;
                 var tsk = newMethod();
-              //  tsk.Start();
                return await tsk;
            }
            
@@ -59,6 +53,19 @@ namespace CodeDao.BUS
 
             };
             return response;
+        }
+
+        public async Task<ResponseData<bool>> SignUp(FirebaseAuthType type, string accessToken, User user)
+        {
+            return await _auth.SignUp(type, accessToken, user);
+
+
+        }
+        public async Task<ResponseData<bool>> ForgotPassword(string email)
+        {
+            return await _auth.SendEmailToResetPasswordTask(email);
+
+
         }
     }
 }

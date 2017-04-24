@@ -69,6 +69,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\LableMutilline.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\QuestionItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\QuestionItemControl.Designer.cs">
+      <DependentUpon>QuestionItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Loading.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +98,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\QuestionItemControl.resx">
+      <DependentUpon>QuestionItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Loading.resx">
       <DependentUpon>Loading.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,17 +147,30 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_clear_grey_500_24dp.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Invisible-50.png" />
+    <None Include="Resources\Speech Bubble-50.png" />
+    <None Include="Resources\Facebook Like-50.png" />
+    <None Include="Resources\IMG_0135.JPG" />
+    <None Include="Resources\magnify.png" />
+    <None Include="Resources\Stack Overflow-48.png" />
+    <None Include="Resources\New Post-64.png" />
+    <None Include="Resources\Settings-64.png" />
+    <None Include="Resources\Logout Rounded-64.png" />
+    <None Include="Resources\Settings-48.png" />
     <None Include="Resources\loading.gif" />
     <None Include="Resources\spin.gif" />
     <None Include="Resources\animal.gif" />
     <None Include="Resources\30 %281%29.gif" />
+    <None Include="Resources\bell.png" />
+    <None Include="Resources\Dashboard-64.png" />
+    <None Include="Resources\Advertising-64.png" />
+    <None Include="Resources\brightness-1.png" />
+    <None Include="Resources\16864804_1690900151203371_9117013275216508101_n.jpg" />
     <Content Include="Resources\drawable-xxxhdpi\Facebook-96.png" />
     <Content Include="Resources\drawable-xxxhdpi\Google Plus-96.png" />
     <Content Include="Resources\drawable-xxxhdpi\Octocat-96.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CodeDao.BUS\CodeDao.BUS.csproj">
       <Project>{01cbf9a2-bbdf-4676-9db1-c37cd425e99e}</Project>
