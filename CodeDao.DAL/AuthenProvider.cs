@@ -36,66 +36,115 @@ namespace CodeDao.DAL
             switch (type)
             {
                 case FirebaseAuthType.EmailAndPassword:
-                {
-                  
-                    try
                     {
-                            
-                        Task<FirebaseAuthLink> authTask = _provider.SignInWithEmailAndPasswordAsync(user.Email, user.Password);
-                        FirebaseAuthLink authLink = await authTask;
-                        if (authLink.FirebaseToken != null)
+
+                        try
                         {
-                            string idAuth = authLink.User.LocalId;
-                            var client = new FirebaseClient(Constants.FIREBASE_URL_ROOT);
 
-                            var userInfor = await client.Child("users")
-                                                        .Child(idAuth)
-                                                        .WithAuth(() => authLink.FirebaseToken)
-                                                        .OnceSingleAsync<User>();
+                            Task<FirebaseAuthLink> authTask = _provider.SignInWithEmailAndPasswordAsync(user.Email, user.Password);
+                            FirebaseAuthLink authLink = await authTask;
+                            if (authLink.FirebaseToken != null)
+                            {
+                                string idAuth = authLink.User.LocalId;
+                                var client = new FirebaseClient(Constants.FIREBASE_URL_ROOT);
 
-                            response.data = userInfor;
+                                var userInfor = await client.Child("users")
+                                                            .Child(idAuth)
+                                                            .WithAuth(() => authLink.FirebaseToken)
+                                                            .OnceSingleAsync<User>();
+
+                                response.data = userInfor;
+                                return response;
+                            }
+                            response.statusCode = MOV.Models.Constants.CODE_NOT_FOUND;
+                            response.Msg = MOV.Models.Constants.MSG_AUTH;
                             return response;
                         }
-                        response.statusCode = MOV.Models.Constants.CODE_NOT_FOUND;
-                        response.Msg = MOV.Models.Constants.MSG_AUTH;
-                        return response;
-                    }
-                    catch (FirebaseException firebaseException)
-                    {
-                        Console.WriteLine(firebaseException.Message);
-                        response.Msg = firebaseException.Message;
-                        response.statusCode = firebaseException.GetHashCode();
-                        return response;
-                    }
-                    catch (FirebaseAuthException firebaseAuthException)
-                    {
+                        catch (FirebaseException firebaseException)
+                        {
+                            Console.WriteLine(firebaseException.Message);
+                            response.Msg = firebaseException.Message;
+                            response.statusCode = firebaseException.GetHashCode();
+                            return response;
+                        }
+                        catch (FirebaseAuthException firebaseAuthException)
+                        {
                             Console.WriteLine(firebaseAuthException.Reason);
                             response.Msg = firebaseAuthException.Reason.ToString();
                             response.statusCode = firebaseAuthException.Reason.GetHashCode();
                             return response;
                         }
-                }
+                    }
 
                 case FirebaseAuthType.Facebook:
-                {
-                    return response;
-                }
+                    {
+                        return response;
+                    }
                 case FirebaseAuthType.Google:
-                {
-                    return response;
-                }
+                    {
+                        return response;
+                    }
             }
             return response;
         }
 
-        public Task<ResponseData<bool>> SignUp(FirebaseAuthType type, string accessToken, User user = null)
+        public async Task<ResponseData<bool>> SignUp(FirebaseAuthType type, string accessToken, User user = null)
         {
-            throw new NotImplementedException();
+            var response = new ResponseData<bool>
+            {
+                Msg = "success",
+                statusCode = 200
+            };
+            switch (type)
+            {
+                case FirebaseAuthType.EmailAndPassword:
+                    {
+                   var signUpTask=   _provider.CreateUserWithEmailAndPasswordAsync(user.Email, user.Password, user.DisplayName);
+                        await signUpTask.ContinueWith((task) =>
+                         {
+                             if(!task.IsCanceled && task.Result != null)
+                             {
+                                 var result = task.Result;
+                                 response.data = true;
+                                
+                             }
+                             else if (task.IsFaulted)
+                             {
+                                 response.data = false;
+                                 response.statusCode = CodeDao.MOV.Models.Constants.CODE_AUTH;
+                                 response.Msg = task.Exception.Message;
+                             }
+                         });
+                        return response;
+                    }
+            }
+            return response;
         }
 
-        public Task<ResponseData<bool>> SendEmailToResetPasswordTask(string email)
+        public async Task<ResponseData<bool>> SendEmailToResetPasswordTask(string email)
         {
-            throw new NotImplementedException();
+            var response = new ResponseData<bool>
+            {
+                Msg = "success",
+                statusCode = 200
+            };
+
+            var signUpTask = _provider.SendPasswordResetEmailAsync(email);
+            await signUpTask.ContinueWith((task) =>
+            {
+                if (!task.IsCanceled && task.IsCompleted)
+                {
+                    response.data = true;
+                    response.Msg = "instruction was sent to your mail, Please check it out!";
+                }
+                else if (task.IsFaulted)
+                {
+                    response.data = false;
+                    response.statusCode = CodeDao.MOV.Models.Constants.CODE_NOT_FOUND;
+                    response.Msg = task.Exception.Message;
+                }
+            });
+            return response;
         }
     }
 }

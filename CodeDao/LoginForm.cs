@@ -53,8 +53,6 @@ namespace CodeDao
             if (responseData.statusCode == Constants.CODE_SUCCESS)
             {
                 MessageBox.Show("Hi " + responseData.data.DisplayName);
-
-
             }
             else
             {
