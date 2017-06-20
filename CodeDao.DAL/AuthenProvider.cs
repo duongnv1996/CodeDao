@@ -102,17 +102,16 @@ namespace CodeDao.DAL
                    var signUpTask=   _provider.CreateUserWithEmailAndPasswordAsync(user.Email, user.Password, user.DisplayName);
                         await signUpTask.ContinueWith((task) =>
                          {
-                             if(!task.IsCanceled && task.Result != null)
+                             if(!task.IsFaulted  && task.Result != null)
                              {
                                  var result = task.Result;
-                                 response.data = true;
-                                
+                                 response.data = true;                         
                              }
-                             else if (task.IsFaulted)
+                             else
                              {
                                  response.data = false;
                                  response.statusCode = CodeDao.MOV.Models.Constants.CODE_AUTH;
-                                 response.Msg = task.Exception.Message;
+                            //     response.Msg =( (FirebaseAuthException) (task.Exception.InnerException) ).Reason.ToString();
                              }
                          });
                         return response;

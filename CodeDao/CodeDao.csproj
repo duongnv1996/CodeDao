@@ -35,6 +35,18 @@
     <Reference Include="Bunifu_UI_v1.52">
       <HintPath>C:\Program Files (x86)\Bunifu Technologies\Bunifu Framework Manager\bin\updates\Bunifu_UI_1.5\Bunifu_UI_v1.52.dll</HintPath>
     </Reference>
+    <Reference Include="CodeDao.BUS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CodeDao.BUS\bin\Debug\CodeDao.BUS.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeDao.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CodeDao.BUS\bin\Debug\CodeDao.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeDao.MOV, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CodeDao.BUS\bin\Debug\CodeDao.MOV.dll</HintPath>
+    </Reference>
     <Reference Include="Firebase.Auth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FirebaseAuthentication.net.2.2.0\lib\portable45-net45+win8+wpa81\Firebase.Auth.dll</HintPath>
     </Reference>
@@ -147,6 +159,11 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_clear_grey_500_24dp.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icons8-Back-64.png" />
+    <None Include="Resources\icons8-Paper Plane-64 %281%29.png" />
+    <None Include="Resources\icons8-Inbox-64.png" />
+    <None Include="Resources\icons8-Notification-64.png" />
+    <None Include="Resources\icons8-Paper Plane-64.png" />
     <None Include="Resources\Invisible-50.png" />
     <None Include="Resources\Speech Bubble-50.png" />
     <None Include="Resources\Facebook Like-50.png" />
@@ -169,17 +186,6 @@
     <Content Include="Resources\drawable-xxxhdpi\Facebook-96.png" />
     <Content Include="Resources\drawable-xxxhdpi\Google Plus-96.png" />
     <Content Include="Resources\drawable-xxxhdpi\Octocat-96.png" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\CodeDao.BUS\CodeDao.BUS.csproj">
-      <Project>{01cbf9a2-bbdf-4676-9db1-c37cd425e99e}</Project>
-      <Name>CodeDao.BUS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CodeDao.MOV\CodeDao.MOV.csproj">
-      <Project>{1bdb1128-a511-4a03-b2a8-97950c191c76}</Project>
-      <Name>CodeDao.MOV</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

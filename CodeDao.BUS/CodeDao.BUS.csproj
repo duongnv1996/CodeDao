@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{01CBF9A2-BBDF-4676-9DB1-C37CD425E99E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeDao.BUS</RootNamespace>
     <AssemblyName>CodeDao.BUS</AssemblyName>
@@ -33,6 +33,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodeDao.DAL">
+      <HintPath>..\CodeDao.DAL\bin\Debug\CodeDao.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeDao.MOV">
+      <HintPath>..\CodeDao.DAL\bin\Debug\CodeDao.MOV.dll</HintPath>
+    </Reference>
     <Reference Include="Firebase.Auth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FirebaseAuthentication.net.2.2.0\lib\portable45-net45+win8+wpa81\Firebase.Auth.dll</HintPath>
     </Reference>
@@ -52,16 +58,6 @@
     <Compile Include="AuthenticationBUS.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CodeDao.DAL\CodeDao.DAL.csproj">
-      <Project>{77bc3b95-f843-4f33-b5eb-18716ea09b6a}</Project>
-      <Name>CodeDao.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CodeDao.MOV\CodeDao.MOV.csproj">
-      <Project>{1bdb1128-a511-4a03-b2a8-97950c191c76}</Project>
-      <Name>CodeDao.MOV</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

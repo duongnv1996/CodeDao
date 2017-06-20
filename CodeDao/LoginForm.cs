@@ -47,17 +47,31 @@ namespace CodeDao
             };
             loadingView.Visible = true;
 
-            Task<ResponseData<User>> newUser =  _authentication.SignIn(FirebaseAuthType.EmailAndPassword, userLogin, null);
+            Task<ResponseData<User>> newUser = _authentication.SignIn(FirebaseAuthType.EmailAndPassword, userLogin, null);
             ResponseData<User> responseData = await newUser;
             loadingView.Visible = false;
             if (responseData.statusCode == Constants.CODE_SUCCESS)
             {
-                MessageBox.Show("Hi " + responseData.data.DisplayName);
+               // MessageBox.Show("Hi " + responseData.data.DisplayName);
+                new FormMain().Show();
             }
             else
             {
                 MessageBox.Show(responseData.Msg);
             }
+
+            //Task < ResponseData < bool >> signUpUser = _authentication.ForgotPassword("1@gmail.com");
+            //ResponseData<bool> responseDataSignUp = await signUpUser;
+            //loadingView.Visible = false;
+            //if (responseDataSignUp.statusCode == Constants.CODE_SUCCESS)
+            //{
+            //    MessageBox.Show("Hi " + responseDataSignUp.data);
+            //}
+            //else
+            //{
+            //    MessageBox.Show(responseDataSignUp.Msg);
+            //}
+           
         }
 
         private void close_Click(object sender, EventArgs e)

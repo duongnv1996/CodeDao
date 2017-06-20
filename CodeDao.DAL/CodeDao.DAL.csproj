@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodeDao.MOV, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CodeDao.MOV\bin\Debug\CodeDao.MOV.dll</HintPath>
+    </Reference>
     <Reference Include="Firebase.Auth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FirebaseAuthentication.net.2.2.0\lib\portable45-net45+win8+wpa81\Firebase.Auth.dll</HintPath>
     </Reference>
@@ -71,12 +75,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CodeDao.MOV\CodeDao.MOV.csproj">
-      <Project>{1bdb1128-a511-4a03-b2a8-97950c191c76}</Project>
-      <Name>CodeDao.MOV</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
